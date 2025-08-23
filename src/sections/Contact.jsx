@@ -1,123 +1,105 @@
 import React, { useState } from 'react';
 
-const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+const methods = [
+  {
+    title: 'WhatsApp',
+    subtitle: '06-52-95-27-21',
+    action: 'Write me →',
+    icon: '🟢',
+    href: 'https://wa.me/+33652952721'
+  },
+];
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+const Contact = () => {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+
+  const handleChange = (e) =>
+    setFormData((s) => ({ ...s, [e.target.name]: e.target.value }));
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ici, vous pouvez ajouter la logique d'envoi du formulaire
     console.log('Formulaire envoyé:', formData);
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    setFormData({ name: '', email: '', message: '' });
   };
 
   return (
-    <section id="contact" className="py-20 theme-dark">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4">Contactez-moi</h2>
-          <div className="w-16 h-1 bg-primary-600 mx-auto rounded-full mb-12"></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Formulaire */}
-            <div>
-              <form onSubmit={handleSubmit} className="space-y-8">
+    <section id="contact" className="py-16 bg-gray-50 dark:bg-dark-bg">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Left: cards */}
+          <div>
+            <h3 className="text-center text-xl font-semibold text-primary-600 mb-6">Talk to me</h3>
+            <div className="space-y-5">
+              {methods.map((m, i) => (
+                <a
+                  key={i}
+                  href={m.href}
+                  className="block bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow hover:border-primary-200"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="text-2xl">{m.icon}</div>
+                    <div className="flex-1">
+                      <p className="text-gray-900 dark:text-white font-medium">{m.title}</p>
+                      <p className="text-gray-500 dark:text-gray-400 text-sm">{m.subtitle}</p>
+                      <span className="inline-flex items-center text-sm text-primary-600 mt-3">{m.action}</span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Right: form */}
+          <div>
+            <h3 className="text-center text-xl font-semibold text-primary-600 mb-6">Write me your project</h3>
+            <div className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-6 shadow-sm">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Nom complet
-                  </label>
+                  <label htmlFor="name" className="block text-sm text-gray-500 dark:text-gray-400">Name</label>
                   <input
-                    type="text"
                     id="name"
                     name="name"
+                    type="text"
                     value={formData.name}
                     onChange={handleChange}
+                    placeholder="Insert your name"
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 focus:ring-2 focus:ring-offset-0 transition-all duration-300"
-                    placeholder="Votre nom"
+                    className="mt-1 w-full rounded-xl border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600"
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email
-                  </label>
+                  <label htmlFor="email" className="block text-sm text-gray-500 dark:text-gray-400">Mail</label>
                   <input
-                    type="email"
                     id="email"
                     name="email"
+                    type="email"
                     value={formData.email}
                     onChange={handleChange}
+                    placeholder="Insert your email"
                     required
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 focus:ring-2 focus:ring-offset-0 transition-all duration-300"
-                    placeholder="votre@email.com"
+                    className="mt-1 w-full rounded-xl border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-gray-900 dark:text-dark-text placeholder-gray-400 dark:placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600"
                   />
                 </div>
-
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message
-                  </label>
+                  <label htmlFor="message" className="block text-sm text-gray-500 dark:text-gray-400">Project</label>
                   <textarea
                     id="message"
                     name="message"
+                    rows="5"
                     value={formData.message}
                     onChange={handleChange}
+                    placeholder="Write your project"
                     required
-                    rows={4}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 focus:ring-2 focus:ring-offset-0 transition-all duration-300"
-                    placeholder="Votre message..."
+                    className="mt-1 w-full rounded-xl border border-gray-300 dark:border-dark-border bg-white dark:bg-dark-surface text-gray-900 dark:text-dark-text placeholder-gray-400 dark:placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-600"
                   />
                 </div>
-
                 <button
                   type="submit"
-                  className="inline-flex justify-center py-3 px-6 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-300 transform hover:scale-105"
+                  className="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 rounded-full bg-primary-600 text-white font-medium hover:bg-primary-700"
                 >
-                  <span className="mr-2">💌</span>
-                  Envoyer le message
+                  Send Message <span className="ml-2">📨</span>
                 </button>
               </form>
-            </div>
-
-            {/* Informations de contact */}
-            <div className="space-y-12">
-              <div className="flex items-center">
-                <span className="text-primary-600 text-3xl mr-6">📧</span>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600 mt-2">contact@example.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <span className="text-primary-600 text-3xl mr-6">📱</span>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">WhatsApp</h3>
-                  <p className="text-gray-600 mt-2">+33 6 XX XX XX XX</p>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <span className="text-primary-600 text-3xl mr-6">📍</span>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900">Adresse</h3>
-                  <p className="text-gray-600 mt-2">Paris, France</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

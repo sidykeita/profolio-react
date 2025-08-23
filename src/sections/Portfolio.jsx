@@ -1,81 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { projects } from '../data/projects';
 
-const projects = [
-  {
-    title: 'Projet 1',
-    description: 'Description du projet 1',
-    image: 'https://via.placeholder.com/400x300',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    url: '#'
-  },
-  {
-    title: 'Projet 2',
-    description: 'Description du projet 2',
-    image: 'https://via.placeholder.com/400x300',
-    technologies: ['Vue.js', 'Firebase', 'Tailwind CSS'],
-    url: '#'
-  },
-  {
-    title: 'Projet 3',
-    description: 'Description du projet 3',
-    image: 'https://via.placeholder.com/400x300',
-    technologies: ['Angular', 'NestJS', 'TypeScript'],
-    url: '#'
-  },
-  {
-    title: 'Projet 4',
-    description: 'Description du projet 4',
-    image: 'https://via.placeholder.com/400x300',
-    technologies: ['Next.js', 'Prisma', 'PostgreSQL'],
-    url: '#'
-  }
-];
+// Inline component to manage expandable tag chips per project card
+const TagList = ({ tags = [], extraTags = [] }) => {
+  const [expanded, setExpanded] = useState(false);
+  const keyTags = (tags || []).filter((t) => t !== '+');
+  const hasMore = (tags || []).includes('+') && (extraTags || []).length > 0;
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {keyTags.map((t, idx) => (
+        <span
+          key={`t-${idx}`}
+          className="text-[11px] px-2 py-1 rounded-full bg-gray-100 text-gray-700 dark:bg-dark-bg dark:text-gray-300 border border-gray-200 dark:border-dark-border hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-colors cursor-pointer"
+        >
+          {t}
+        </span>
+      ))}
+
+      {expanded && (extraTags || []).map((et, i) => (
+        <span
+          key={`et-${i}`}
+          className="text-[11px] px-2 py-1 rounded-full bg-gray-100 text-gray-700 dark:bg-dark-bg dark:text-gray-300 border border-gray-200 dark:border-dark-border hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-colors cursor-pointer"
+        >
+          {et}
+        </span>
+      ))}
+
+      {hasMore && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          className="text-[11px] px-2 py-1 rounded-full bg-gray-100 text-gray-700 dark:bg-dark-bg dark:text-gray-200 border border-gray-200 dark:border-dark-border hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-colors cursor-pointer"
+          aria-expanded={expanded}
+          aria-label={expanded ? 'Réduire les technologies' : 'Afficher plus de technologies'}
+        >
+          {expanded ? '-' : '+'}
+        </button>
+      )}
+    </div>
+  );
+};
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="py-20 theme-dark">
+    <section id="portfolio" className="py-16 bg-gray-50 dark:bg-dark-bg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4">Mes projets</h2>
-          <div className="w-16 h-1 bg-primary-600 mx-auto rounded-full mb-12"></div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="group relative">
-                <div className="relative overflow-hidden rounded-lg">
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary-600 to-primary-400 opacity-10"></div>
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-center">
-                      <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                      <p className="text-gray-300 mb-4">{project.description}</p>
-                      <div className="flex gap-2">
-                        {project.technologies.map((tech, i) => (
-                          <span
-                            key={i}
-                            className="px-3 py-1 bg-primary-600 text-white rounded-full text-sm"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <a
-                        href={project.url}
-                        className="mt-4 inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105"
-                      >
-                        <span className="mr-2">🔗</span>
-                        Voir le projet
-                      </a>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">Portfolio</h2>
+          <p className="text-gray-500 mt-2">Quelques projets récents</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p, i) => (
+            <div key={i} className="group relative">
+              {/* Gradient ring card */}
+              <div className="bg-gradient-to-br from-primary-200/70 via-white to-fuchsia-200/70 p-[1px] rounded-2xl shadow-sm">
+                <div className="bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-100/60 dark:border-dark-border transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-xl">
+                  {/* Image with zoom */}
+                  <div className="relative h-44">
+                    <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+                      <h3 className="text-white font-semibold drop-shadow">{p.title}</h3>
+                      <Link to={`/projects/${p.slug}`} className="text-xs px-3 py-1 rounded-full bg-white/90 text-gray-900 hover:bg-white">Voir</Link>
                     </div>
+                  </div>
+                  {/* Content */}
+                  <div className="px-5 py-4">
+                    <TagList tags={p.tags} extraTags={p.extraTags} />
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

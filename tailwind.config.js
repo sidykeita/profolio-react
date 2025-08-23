@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -22,11 +23,12 @@ export default {
           800: '#5b21b6',
           900: '#4c1d95',
         },
-        darkMode: 'class',
         dark: {
-          bg: '#121212',
-          surface: '#1e1e1e',
-          text: '#e0e0e0',
+          bg: '#0b1220',        // bleu nuit
+          surface: '#0e1629',   // carte/fond secondaire
+          card: '#101a31',      // cartes
+          border: '#1a2745',
+          text: '#e6edf3',
         },
       },
     },

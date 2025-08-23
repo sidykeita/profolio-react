@@ -17,18 +17,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .theme-dark {
-    --foreground-rgb: 224, 224, 224;
-    --background-rgb: 18, 18, 18;
-    color: rgb(var(--foreground-rgb));
-    background: rgb(var(--background-rgb));
-  }
-
   body {
     color: rgb(var(--foreground-rgb));
     background: rgb(var(--background-rgb));
     min-height: 100vh;
-    margin: 0;
+    margin: 0
+  }
+
+  .dark {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 0, 0, 0;
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
   }
 
   a {
@@ -58,8 +58,6 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   color: rgb(var(--foreground-rgb));
@@ -101,4 +99,37 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Contour animé autour d'un élément (utilisé pour la photo dans About.jsx) */
+@keyframes spin-slower {
+  to { transform: rotate(360deg) }
+}
+
+.outline-rotating {
+  position: relative;
+  border-radius: 1.25rem; /* ~rounded-xl */
+}
+
+/* Anneau conique tournant, évidé au centre pour ne pas recouvrir l'image */
+.outline-rotating::before {
+  content: "";
+  position: absolute;
+  inset: -8px; /* épaisseur extérieure du contour */
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, #7c3aed, #6366f1, #7c3aed);
+  animation: spin-slower 8s linear infinite;
+  /* On garde seulement la bordure avec un masque radial */
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 8px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #000 calc(100% - 8px));
+}
+
+/* S'assure que le média reste au-dessus du ::before */
+.outline-rotating > img,
+.outline-rotating > picture,
+.outline-rotating > video,
+.outline-rotating > .ring-content {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
 }

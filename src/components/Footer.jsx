@@ -1,51 +1,51 @@
 import React from 'react';
 
+const navLinks = [
+  { href: '#about', label: 'About' },
+  { href: '#portfolio', label: 'Projects' },
+  { href: '#services', label: 'Services' },
+];
+
+const socials = [
+  { href: '#', label: 'Facebook', icon: 'f' },
+  { href: '#', label: 'Instagram', icon: 'ig' },
+  { href: '#', label: 'Twitter', icon: 'tw' },
+];
+
 const Footer = () => {
-  const socialLinks = [
-    { icon: 'f', href: '#', className: 'text-blue-600' }, // Facebook
-    { icon: 'x', href: '#', className: 'text-blue-400' }, // Twitter
-    { icon: 'i', href: '#', className: 'text-pink-600' }, // Instagram
-    { icon: 'i', href: '#', className: 'text-blue-700' }, // LinkedIn
-    { icon: 'g', href: '#', className: 'text-gray-600' }, // GitHub
-  ];
-
   return (
-    <footer className="theme-dark">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-200">Quick Links</h3>
-            <ul className="mt-4 space-y-4">
-              <li><a href="#home" className="text-gray-600 hover:text-white">Home</a></li>
-              <li><a href="#about" className="text-gray-600 hover:text-white">About</a></li>
-              <li><a href="#skills" className="text-gray-600 hover:text-white">Skills</a></li>
-              <li><a href="#portfolio" className="text-gray-600 hover:text-white">Portfolio</a></li>
-            </ul>
-          </div>
+    <footer className="bg-white dark:bg-dark-surface">
+      <div className="max-w-5xl mx-auto px-4 py-12">
+        {/* Name */}
+        <h3 className="text-2xl font-semibold text-center text-gray-900 dark:text-white">Smith</h3>
 
-          {/* Social Links */}
-          <div className="md:col-span-2">
-            <h3 className="text-sm font-semibold text-gray-200">Follow Me</h3>
-            <div className="flex justify-center gap-8 mt-8">
-              {socialLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className={`text-2xl ${link.className} text-gray-300 hover:text-primary-400`}
-                >
-                  {link.icon}
-                </a>
-              ))}
-            </div>
-          </div>
+        {/* Nav */}
+        <nav className="mt-4 flex items-center justify-center gap-8 text-gray-700 dark:text-gray-300">
+          {navLinks.map((l) => (
+            <a key={l.label} href={l.href} className="hover:text-black">
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Socials */}
+        <div className="mt-6 flex items-center justify-center gap-4">
+          {socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              aria-label={s.label}
+              className="w-10 h-10 rounded-xl bg-primary-600 text-white flex items-center justify-center text-sm hover:bg-primary-700"
+            >
+              {s.icon}
+            </a>
+          ))}
         </div>
 
-        <div className="mt-8 pt-8 border-t border-gray-200 text-center">
-          <p className="text-base">
-            © {new Date().getFullYear()} Portfolio. All rights reserved.
-          </p>
-        </div>
+        {/* Copyright */}
+        <p className="text-center text-gray-500 dark:text-gray-400 text-sm mt-8">
+          © Crypticalcoder. All rights reserved
+        </p>
       </div>
     </footer>
   );

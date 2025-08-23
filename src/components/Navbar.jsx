@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 
 // Fonction pour le défilement smooth
@@ -24,6 +24,24 @@ const scrollToSection = (id) => {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isDark, setIsDark] = React.useState(false);
+
+  // Initialiser le thème depuis localStorage ou la préférence système
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+    setIsDark(initialTheme === 'dark');
+    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
+  }, []);
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+  };
 
   const menuItems = [
     { name: 'Home', href: '#home' },
@@ -34,12 +52,12 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full theme-dark shadow-lg z-50">
+    <nav className="fixed w-full bg-white/70 dark:bg-[#0b1220cc] backdrop-blur shadow-lg z-50 text-gray-900 dark:text-dark-text">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-bold">Portfolio</span>
+            <span className="text-xl font-bold dark:text-white">Portfolio</span>
           </div>
 
           {/* Desktop Menu */}
@@ -52,7 +70,7 @@ const Navbar = () => {
                   e.preventDefault();
                   scrollToSection(item.href.replace('#', ''));
                 }}
-                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 {item.name}
               </a>
@@ -62,15 +80,17 @@ const Navbar = () => {
 
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center sm:hidden">
+          <div className="flex items-center space-x-4">
+            {/* Theme Toggle */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-300 dark:hover:bg-gray-800"
+              onClick={toggleTheme}
+              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+              aria-label="Toggle theme"
             >
-              {isOpen ? (
-                <XMarkIcon className="block h-6 w-6" />
+              {isDark ? (
+                <SunIcon className="h-6 w-6 text-yellow-400" />
               ) : (
-                <Bars3Icon className="block h-6 w-6" />
+                <MoonIcon className="h-6 w-6 text-white" />
               )}
             </button>
           </div>
