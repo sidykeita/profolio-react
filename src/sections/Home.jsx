@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Résout l'image locale avec caractères spéciaux (apostrophe) correctement avec Vite
-const profileImg = new URL("../images/Capture d'écran 2025-04-28 034928.png", import.meta.url).href;
+// Photo de profil (Home) depuis src/images/profil/
+const profileImg = new URL("../images/profil/IMG_0987 (1).jpeg", import.meta.url).href;
 
 const Home = () => {
   return (

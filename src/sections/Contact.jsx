@@ -8,6 +8,13 @@ const methods = [
     icon: '🟢',
     href: 'https://wa.me/+33652952721'
   },
+  {
+    title: 'Mail',
+    subtitle: 'sidyk68@gmail.com',
+    action: 'Email me →',
+    icon: '✉️',
+    href: 'mailto:sidyk68@gmail.com'
+  },
 ];
 
 const Contact = () => {

@@ -1,7 +1,8 @@
 import React from 'react';
+import Reveal from '../components/Reveal.jsx';
 
-// Image locale pour remplacer le placeholder externe
-const aboutImg = new URL("../images/Capture d'écran 2025-04-28 034928.png", import.meta.url).href;
+// Photo About depuis src/images/profil/ (même image que Home)
+const aboutImg = new URL("../images/profil/IMG_0987 (1).jpeg", import.meta.url).href;
 // Logos fournis par l'utilisateur
 const logoF2i = new URL("../images/logo/f2i_logo.jpeg", import.meta.url).href;
 const logoCompany = new URL("../images/logo/images.png", import.meta.url).href;
@@ -13,7 +14,7 @@ const About = () => {
   return (
     <section id="about" className="w-full bg-gray-50 dark:bg-dark-bg">
       <div className="w-full flex justify-center">
-        <div className="w-full max-w-6xl px-4 py-16">
+        <Reveal as="div" className="w-full max-w-6xl px-4 py-16">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-primary-600">About Me</h2>
             <p className="text-gray-500 dark:text-gray-400 mt-2">My introduction</p>
@@ -43,8 +44,12 @@ const About = () => {
                     { iconImg: logoCompany, title: 'Expérience', sub: '4 ans ' },
                     { iconImg: logoF2i, title: 'Diplôme', sub: 'Master 1'  },
                     { iconImg: logoSailingLoc, title: 'Projets', sub: '+ 10' },
-                  ].map((c) => (
-                    <div key={c.title} className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-4 text-center shadow-sm hover:border-primary-200 transition-colors">
+                  ].map((c, idx) => (
+                    <div
+                      key={c.title}
+                      className="group relative card-float bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-primary-300/50 dark:hover:ring-primary-700/40"
+                      style={{ animationDelay: `${(idx % 3) * 0.4}s` }}
+                    >
                       <div className="mb-2 flex justify-center">
                         {c.iconImg ? (
                           <img
@@ -113,8 +118,8 @@ const About = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+        </Reveal>
+      </div>
     </section>
   );
 };

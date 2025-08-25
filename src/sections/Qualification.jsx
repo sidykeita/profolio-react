@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Reveal from '../components/Reveal.jsx';
 
 const qualificationData = {
   education: [
@@ -38,7 +39,7 @@ const qualificationData = {
 };
 
 const ItemCard = ({ title, subtitle, date }) => (
-  <div>
+  <div className="group relative card-float-force mb-4 rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-card shadow-sm p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-primary-300/50 dark:hover:ring-primary-700/40">
     <h4 className="text-gray-900 dark:text-white font-semibold">{title}</h4>
     <p className="text-gray-500 dark:text-gray-400 text-sm">{subtitle}</p>
     <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{date}</p>
@@ -54,7 +55,7 @@ const Qualification = () => {
 
   return (
     <section id="qualification" className="py-20 bg-gray-50 dark:bg-dark-bg">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Reveal as="div" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-primary-600">Qualification</h2>
           <p className="text-gray-500 dark:text-gray-400 mt-2">My personal journey</p>
@@ -127,7 +128,7 @@ const Qualification = () => {
             );
           })}
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 };

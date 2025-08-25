@@ -101,6 +101,37 @@ button:focus-visible {
   }
 }
 
+/* Scroll reveal base styles */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1400ms ease, transform 1400ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Horizontal slide-in variants override the default Y transform */
+.reveal.reveal-x-left {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+.reveal.reveal-x-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal.reveal-x-right {
+  opacity: 0;
+  transform: translateX(24px);
+}
+.reveal.reveal-x-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* Contour animé autour d'un élément (utilisé pour la photo dans About.jsx) */
 @keyframes spin-slower {
   to { transform: rotate(360deg) }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Reveal from '../components/Reveal.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHtml5,
@@ -114,7 +115,7 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 bg-gray-50 dark:bg-dark-bg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Reveal as="div" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-primary-600">Skills</h2>
           <p className="text-gray-500 dark:text-gray-400 mt-2">My technical level</p>
@@ -122,7 +123,10 @@ const Skills = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Frontend Card */}
-          <div className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-8 shadow-sm">
+          <div
+            className="group relative card-float bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-primary-300/50 dark:hover:ring-primary-700/40"
+            style={{ animationDelay: '0s' }}
+          >
             <h3 className="text-xl font-semibold text-primary-600 text-center mb-8">Frontend</h3>
             <div className="space-y-6">
               {frontendGroups.map((group) => (
@@ -144,7 +148,10 @@ const Skills = () => {
           </div>
 
           {/* Backend Card */}
-          <div className="bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-8 shadow-sm">
+          <div
+            className="group relative card-float bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-2xl p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-2 hover:ring-primary-300/50 dark:hover:ring-primary-700/40"
+            style={{ animationDelay: '0.6s' }}
+          >
             <h3 className="text-xl font-semibold text-primary-600 text-center mb-8">Backend</h3>
             <div className="space-y-6">
               {backendGroups.map((group) => (
@@ -165,7 +172,7 @@ const Skills = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 };
