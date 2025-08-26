@@ -4,7 +4,7 @@ const methods = [
   {
     title: 'WhatsApp',
     subtitle: '06-52-95-27-21',
-    action: 'Écris‑moi →',
+    action: 'Écrivez‑moi →',
     icon: (
       <span className="inline-flex items-center justify-center w-9 h-9 rounded-full" style={{ backgroundColor: '#25D366' }}>
         <svg
@@ -25,7 +25,7 @@ const methods = [
   {
     title: 'Mail',
     subtitle: 'sidyk68@gmail.com',
-    action: 'Envoyer moi un email →',
+    action: 'Envoyez moi un email →',
     icon: '✉️',
     href: 'mailto:sidyk68@gmail.com'
   },
