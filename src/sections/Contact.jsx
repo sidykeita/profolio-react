@@ -49,9 +49,12 @@ const Contact = () => {
     }
   }, []);
 
+  const [needsActivation, setNeedsActivation] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setNeedsActivation(false);
     setIsSubmitting(true);
     try {
       // Utiliser FormData (évite les soucis d'en-têtes CORS/JSON)
@@ -62,6 +65,10 @@ const Contact = () => {
       body.append('_subject', 'Nouveau message depuis le portfolio');
       body.append('_template', 'table');
       body.append('_captcha', 'false');
+      // Réponse automatique au visiteur (vous pouvez personnaliser le texte)
+      body.append('_autoresponse', `Bonjour,\n\nMerci pour votre message. Je vous répondrai rapidement.\n\n— Sidy Keita`);
+      // Facilite le reply-to
+      if (formData?.email) body.append('_replyto', formData.email);
 
       const res = await fetch('https://formsubmit.co/ajax/sidyk68@gmail.com', {
         method: 'POST',
@@ -75,6 +82,9 @@ const Contact = () => {
           const errJson = await res.json();
           if (errJson?.message) msg = errJson.message;
         } catch (_) {}
+        if (/needs\s*Activation/i.test(msg)) {
+          setNeedsActivation(true);
+        }
         throw new Error(msg);
       }
       const data = await res.json();
@@ -96,8 +106,24 @@ const Contact = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section title (consistent with other sections) */}
         <div className="text-center mb-6">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">Contact</h2>
+          <h2 className="text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">Contactez‑moi</h2>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">Une idée, un projet, une question ? Je vous réponds vite.</p>
         </div>
+
+        {needsActivation && (
+          <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-400/40 dark:bg-amber-500/10 dark:text-amber-200 p-4">
+            <p className="font-medium">Activation FormSubmit requise</p>
+            <p className="text-sm mt-1">Cliquez sur le lien « Activate Form » envoyé à <strong>sidyk68@gmail.com</strong>. Ensuite, réessayez l’envoi.</p>
+            <div className="mt-3">
+              <a
+                href={`mailto:sidyk68@gmail.com?subject=${encodeURIComponent('Contact depuis le portfolio')}&body=${encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`}
+                className="inline-flex items-center px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33] text-sm"
+              >
+                Ou m’écrire via votre messagerie
+              </a>
+            </div>
+          </div>
+        )}
         {sent && (
           <div className="mb-8 max-w-3xl mx-auto rounded-xl border border-green-300 bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-200 dark:border-green-700 px-4 py-3">
             Message envoyé avec succès. Merci ! Je vous répondrai rapidement.
