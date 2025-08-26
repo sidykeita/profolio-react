@@ -3,30 +3,6 @@
 const boatImg = new URL("../images/Capture d'écran 2025-08-21 141355.png", import.meta.url).href;
 const portraitImg = new URL("../images/Capture d'écran 2025-04-28 034928.png", import.meta.url).href;
 
-// SailingLoc gallery assets — static and always 6 previews. No auto-reordering.
-const sailingGlobs = import.meta.glob('../images/sailingloc/*.{png,jpg,jpeg,webp,svg}', {
-  eager: true,
-  as: 'url',
-});
-
-const sailingAll = Object.values(sailingGlobs);
-// Helper to get basenames
-const sailingNamed = sailingAll.map((u) => ({ u, name: (u.match(/[^\/\\]+$/) || [u])[0] }));
-const byName = (name) => sailingNamed.find((x) => x.name.toLowerCase() === name.toLowerCase())?.u;
-
-// Cover fixed
-const sailingCover = byName('home-sailingLoc.png') || sailingAll[0] || boatImg;
-
-// Fixed order of 6 previews. If a file is missing, fill with a neutral placeholder (data URL).
-const desiredOrder = [
-  'home2.png',
-  'destination.png',
-  'bateaux-disponible.png',
-  'reservation-bateau.png',
-  'owner-dashboard.png',
-  'admin-dashboard.png',
-];
-
 // Minimal neutral placeholder (SVG data URL)
 const placeholder =
   'data:image/svg+xml;utf8,' +
@@ -36,11 +12,26 @@ const placeholder =
       `<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="%239ca3af" font-family="system-ui,Segoe UI,Roboto,Helvetica,Arial" font-size="28">Aperçu manquant</text>` +
     `</svg>`
   );
+// SailingLoc: imports explicites pour garantir l'ordre en production (Netlify)
+const sailingCover = new URL('../images/sailingloc/home-sailingLoc.png', import.meta.url).href;
+const sailing_home2 = new URL('../images/sailingloc/home2.png', import.meta.url).href;
+const sailing_destination = new URL('../images/sailingloc/destination.png', import.meta.url).href;
+const sailing_bateaux = new URL('../images/sailingloc/bateaux-disponible.png', import.meta.url).href;
+const sailing_reservation = new URL('../images/sailingloc/reservation-bateau.png', import.meta.url).href;
+const sailing_owner = new URL('../images/sailingloc/owner-dashboard.png', import.meta.url).href;
+// admin-dashboard.png a été supprimé du repo, on met un placeholder pour garder 6 éléments
+const sailing_admin = placeholder;
 
-const sailingPreviews = desiredOrder.map((n) => byName(n) || placeholder);
-
-// Build gallery as [cover, ...6 previews] so that ProjectDetail uses gallery.slice(1) and always gets 6 items
-const sailingGallery = [sailingCover, ...sailingPreviews];
+// Build gallery as [cover, ...6 previews] pour que ProjectDetail utilise gallery.slice(1)
+const sailingGallery = [
+  sailingCover,
+  sailing_home2,
+  sailing_destination,
+  sailing_bateaux,
+  sailing_reservation,
+  sailing_owner,
+  sailing_admin,
+];
 
 // ClickYourFlat gallery assets
 const cyfGlobs = import.meta.glob('../images/clickyourflat/*.{png,jpg,jpeg,webp,svg}', {
