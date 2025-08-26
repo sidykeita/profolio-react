@@ -36,13 +36,18 @@ const ProjectDetail = () => {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
+  // Toujours remonter en haut lors de l'ouverture d'une page Détails
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   if (!project) {
     return (
       <div className="min-h-[60vh] flex items-center justify-center text-center px-4">
         <div>
           <h1 className="text-2xl font-semibold mb-3">Projet introuvable</h1>
           <p className="text-gray-500 mb-6">Le projet que vous recherchez n'existe pas ou a été supprimé.</p>
-          <Link to="/" className="inline-flex items-center px-4 py-2 rounded-full bg-primary-600 text-white hover:bg-primary-700">← Retour</Link>
+          <Link to="/#portfolio" className="inline-flex items-center px-4 py-2 rounded-full bg-primary-600 text-white hover:bg-primary-700">← Projets</Link>
         </div>
       </div>
     );
@@ -59,9 +64,9 @@ const ProjectDetail = () => {
           <div className="mb-6 flex items-center justify-between">
             <div>
               <div className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-200 dark:bg-primary-900/30 dark:text-primary-200 dark:border-primary-800">Étude de cas</div>
-              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">{project.title}</h1>
+              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">{project.title}</h1>
             </div>
-            <Link to="/" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Retour</Link>
+            <Link to="/#portfolio" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Projets</Link>
           </div>
 
           {/* Hero */}
@@ -160,7 +165,7 @@ const ProjectDetail = () => {
 
           {/* CTA */}
           {project.liveUrl && (
-            <div className="mt-10">
+            <div className="mt-10 flex justify-center">
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -195,9 +200,9 @@ const ProjectDetail = () => {
           <div className="mb-6 flex items-center justify-between">
             <div>
               <div className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-200 dark:bg-primary-900/30 dark:text-primary-200 dark:border-primary-800">Étude de cas</div>
-              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">{project.title}</h1>
+              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">{project.title}</h1>
             </div>
-            <Link to="/" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Retour</Link>
+            <Link to="/#portfolio" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Projets</Link>
           </div>
 
           {/* Hero */}
@@ -265,7 +270,7 @@ const ProjectDetail = () => {
 
           {/* CTA (if later a liveUrl exists) */}
           {project.liveUrl && (
-            <div className="mt-10">
+            <div className="mt-10 flex justify-center">
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -293,9 +298,9 @@ const ProjectDetail = () => {
           <div className="mb-6 flex items-center justify-between">
             <div>
               <div className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-200 dark:bg-primary-900/30 dark:text-primary-200 dark:border-primary-800">Étude de cas</div>
-              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">{project.title}</h1>
+              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">{project.title}</h1>
             </div>
-            <Link to="/" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Retour</Link>
+            <Link to="/#portfolio" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Projets</Link>
           </div>
 
           {/* Hero */}
@@ -405,7 +410,7 @@ const ProjectDetail = () => {
 
           {/* CTA */}
           {project.liveUrl && (
-            <div className="mt-10">
+            <div className="mt-10 flex justify-center">
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -423,35 +428,10 @@ const ProjectDetail = () => {
     );
   }
 
-  // Custom long-form layout for SailingLoc with floating images
+  // Custom long-form layout for SailingLoc (static hero, preserve order)
   if (project.slug === 'sailingloc') {
     const gallery = Array.isArray(project.gallery) ? project.gallery : [project.image].filter(Boolean);
-    // Keep ONLY one hero image (the cover/boat). No slider.
-    const heroImages = [project.image || gallery[0]].filter(Boolean);
-    const [heroIndex, setHeroIndex] = useState(0);
-    const prevHero = () => setHeroIndex((i) => (i - 1 + heroImages.length) % heroImages.length);
-    const nextHero = () => setHeroIndex((i) => (i + 1) % heroImages.length);
-
-    // Keyboard navigation
-    useEffect(() => {
-      const onKey = (e) => {
-        if (e.key === 'ArrowLeft') prevHero();
-        if (e.key === 'ArrowRight') nextHero();
-      };
-      window.addEventListener('keydown', onKey);
-      return () => window.removeEventListener('keydown', onKey);
-    }, [heroImages.length]);
-
-    // Touch swipe
-    let touchStartX = null;
-    const onTouchStart = (e) => { touchStartX = e.changedTouches[0].clientX; };
-    const onTouchEnd = (e) => {
-      const dx = e.changedTouches[0].clientX - (touchStartX ?? 0);
-      if (Math.abs(dx) > 40) {
-        if (dx > 0) prevHero(); else nextHero();
-      }
-      touchStartX = null;
-    };
+    const hero = project.image || gallery[0];
 
     const FloatImage = ({ src, alt, side = 'left', caption }) => (
       <figure
@@ -474,62 +454,15 @@ const ProjectDetail = () => {
           <div className="mb-6 flex items-center justify-between">
             <div>
               <div className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-200 dark:bg-primary-900/30 dark:text-primary-200 dark:border-primary-800">Étude de cas</div>
-              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">{project.title}</h1>
+              <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">{project.title}</h1>
             </div>
-            <Link to="/" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Retour</Link>
+            <Link to="/#portfolio" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Projets</Link>
           </div>
 
-          {/* Hero carousel */}
-          {heroImages.length > 0 && (
-            <div
-              className="relative rounded-2xl overflow-hidden border border-gray-200 dark:border-dark-border shadow-sm mb-4 select-none"
-              onTouchStart={onTouchStart}
-              onTouchEnd={onTouchEnd}
-            >
-              {/* Fixed-height hero that clips overflow; image is contained to never exceed hero */}
-              <div className="w-full h-[320px] sm:h-[420px] bg-gray-100 dark:bg-[#0b1226] overflow-hidden">
-                <img
-                  src={heroImages[heroIndex]}
-                  alt={`${project.title} - visuel ${heroIndex + 1}`}
-                  className="w-full h-full object-contain transition-opacity duration-500"
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
-
-              {heroImages.length > 1 && (
-                <>
-                  {/* Prev */}
-                  <button
-                    type="button"
-                    onClick={prevHero}
-                    aria-label="Image précédente"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white hover:bg-black/60 backdrop-blur"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
-                  </button>
-                  {/* Next */}
-                  <button
-                    type="button"
-                    onClick={nextHero}
-                    aria-label="Image suivante"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/40 text-white hover:bg-black/60 backdrop-blur"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
-                  </button>
-
-                  {/* Dots */}
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
-                    {heroImages.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setHeroIndex(i)}
-                        aria-label={`Aller à l'image ${i + 1}`}
-                        className={`h-2.5 w-2.5 rounded-full ${i === heroIndex ? 'bg-white' : 'bg-white/50 hover:bg-white/80'}`}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
+          {/* Static hero */}
+          {hero && (
+            <div className="rounded-2xl overflow-hidden border border-gray-200 dark:border-dark-border shadow-sm mb-4 bg-gray-100 dark:bg-[#0b1226]">
+              <img src={hero} alt={`${project.title} - visuel`} className="w-full h-auto object-contain max-h-[420px]" />
             </div>
           )}
 
@@ -565,10 +498,14 @@ const ProjectDetail = () => {
           {/* divider */}
           <div className="my-10 h-px bg-gradient-to-r from-transparent via-primary-500/40 to-transparent" />
 
-          {/* Alternating two-column blocks (text|image then image|text), no float wrapping */}
+          {/* Alternating two-column blocks (image|text then text|image), preserve original order */}
           <div className="mt-10 space-y-16">
-            {gallery.slice(1).map((src, idx) => {
-              const imageLeft = idx % 2 === 1; // Row 1: text left, image right
+            {gallery
+              .slice(1)
+              // Hide placeholders coming from static fallback (SVG data URLs)
+              .filter((u) => typeof u === 'string' && !/^data:image\/svg\+xml/i.test(u))
+              .map((src, idx) => {
+              const imageLeft = idx % 2 === 0; // Row 1: image left, text right
               return (
                 <div key={`row-${idx}`} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                   {imageLeft ? (
@@ -707,7 +644,7 @@ const ProjectDetail = () => {
               <div className="inline-flex items-center gap-2 text-xs px-3 py-1 rounded-full bg-primary-50 text-primary-700 border border-primary-200 dark:bg-primary-900/30 dark:text-primary-200 dark:border-primary-800">Étude de cas</div>
               <h1 className="mt-2 text-3xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">{project.title}</h1>
             </div>
-            <Link to="/" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Retour</Link>
+            <Link to="/#portfolio" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Projets</Link>
           </div>
 
           {/* Hero */}
@@ -757,7 +694,7 @@ const ProjectDetail = () => {
 
           {/* CTA */}
           {project.liveUrl && (
-            <div className="mt-10">
+            <div className="mt-10 flex justify-center">
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -780,7 +717,7 @@ const ProjectDetail = () => {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">{project.title}</h1>
-          <Link to="/" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Retour</Link>
+          <Link to="/#portfolio" className="text-sm px-4 py-2 rounded-full bg-white dark:bg-dark-card border border-gray-200 dark:border-dark-border hover:bg-gray-50 dark:hover:bg-[#121b33]">← Projets</Link>
         </div>
 
         <div className="bg-white dark:bg-dark-card rounded-2xl overflow-hidden border border-gray-100 dark:border-dark-border">

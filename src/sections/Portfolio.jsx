@@ -49,8 +49,8 @@ const Portfolio = () => {
     <section id="portfolio" className="py-16 bg-gray-50 dark:bg-dark-bg">
       <Reveal as="div" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-700 to-gray-700 bg-clip-text text-transparent dark:from-white dark:via-primary-300 dark:to-gray-200">Portfolio</h2>
-          <p className="text-gray-500 mt-2">Quelques projets récents</p>
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">Projets</h2>
+          {/* <p className="text-gray-500 mt-2">Quelques projets récents</p> */}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -88,7 +88,7 @@ const Portfolio = () => {
                     <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                 ) : (
-                  <div className="h-32 bg-gradient-to-tr from-primary-700 via-fuchsia-600 to-primary-400 opacity-90 dark:opacity-100" />
+                  <div className="h-32 bg-gradient-to-tr from-primary-800 via-primary-600 to-amber-400 opacity-90 dark:opacity-100" />
                 )}
 
                 {/* Body */}
@@ -124,7 +124,7 @@ const Portfolio = () => {
                             href={p.liveUrl}
                             target="_blank"
                             rel="noreferrer"
-                            className="px-3 py-1.5 text-xs rounded-full bg-primary-600 text-white shadow-sm hover:bg-primary-700 transition-colors"
+                            className="px-3 py-1.5 text-xs rounded-full btn-gradient-violet text-white shadow-sm"
                           >
                             Consulter
                           </a>
@@ -149,7 +149,7 @@ const Portfolio = () => {
                         href={p.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="px-3 py-1.5 text-xs rounded-full bg-primary-600 text-white shadow-sm hover:bg-primary-700 transition-colors"
+                        className="px-3 py-1.5 text-xs rounded-full btn-gradient-violet text-white shadow-sm"
                       >
                         Consulter
                       </a>
@@ -160,7 +160,7 @@ const Portfolio = () => {
                             href={p.live}
                             target="_blank"
                             rel="noreferrer"
-                            className="px-3 py-1.5 text-xs rounded-full bg-primary-600 text-white shadow-sm hover:bg-primary-700 transition-colors"
+                            className="px-3 py-1.5 text-xs rounded-full btn-gradient-violet text-white shadow-sm"
                           >
                             Live
                           </a>

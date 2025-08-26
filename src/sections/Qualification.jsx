@@ -57,8 +57,7 @@ const Qualification = () => {
     <section id="qualification" className="py-20 bg-gray-50 dark:bg-dark-bg">
       <Reveal as="div" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-primary-600">Qualification</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">My personal journey</p>
+        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">Expérience/Diplôme</h2>
         </div>
 
         {/* Tabs */}
@@ -72,7 +71,7 @@ const Qualification = () => {
             }`}
           >
             <span className="mr-2">🎓</span>
-            Education
+            Diplôme
           </button>
           <button
             onClick={() => setActiveTab('experience')}
@@ -83,7 +82,7 @@ const Qualification = () => {
             }`}
           >
             <span className="mr-2">💼</span>
-            Experience
+            Expérience
           </button>
         </div>
 

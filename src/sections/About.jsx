@@ -16,8 +16,7 @@ const About = () => {
       <div className="w-full flex justify-center">
         <Reveal as="div" className="w-full max-w-6xl px-4 py-16">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-primary-600">About Me</h2>
-            <p className="text-gray-500 dark:text-gray-400 mt-2">My introduction</p>
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">A propos de moi</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
               {/* Photo stylisée rectangulaire (différente du Home) */}
@@ -70,7 +69,7 @@ const About = () => {
                 <div className="text-gray-700 dark:text-gray-200 leading-relaxed space-y-5">
                   {/* Intro mise en avant */}
                   <p className="text-lg md:text-xl font-medium">
-                    ✨ Je suis un <span className="text-primary-600 font-semibold">développeur web full‑stack</span> passionné, avec plusieurs années d’expérience entre mes études, mes projets professionnels et personnels.
+                    ✨ je suis un <span className="text-primary-600 font-semibold">développeur web full‑stack</span> passionné, avec plusieurs années d’expérience entre mes études, mes projets professionnels et personnels.
                   </p>
 
                   {/* Liste structurée */}
@@ -94,7 +93,7 @@ const About = () => {
                     <li className="flex items-start gap-3">
                       <span className="shrink-0 text-xl">📚</span>
                       <p>
-                        Apprentissage continu via <span className="font-semibold">Udemy</span> pour explorer de nouveaux langages et renforcer mes bases. Je crois à un <span className="font-semibold">développement</span> en amélioration constante.
+                        Apprentissage continu via <span className="text-primary-600 font-semibold">Udemy</span> pour explorer de nouveaux langages et renforcer mes bases. Je crois à un <span className="font-semibold">développement</span> en amélioration constante.
                       </p>
                     </li>
 
@@ -110,7 +109,7 @@ const About = () => {
                   <a
                     href={cvUrl}
                     download
-                    className="inline-flex items-center px-6 py-3 rounded-full bg-primary-600 text-white font-medium hover:bg-primary-700 transition-colors"
+                    className="inline-flex items-center px-6 py-3 rounded-full btn-gradient-violet text-white font-medium"
                   >
                     <span className="mr-2">📄</span>
                     Télécharger CV

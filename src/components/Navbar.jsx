@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // Fonction pour le défilement smooth
 const scrollToSection = (id) => {
@@ -25,6 +26,8 @@ const scrollToSection = (id) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [isDark, setIsDark] = React.useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // Initialiser le thème depuis localStorage ou la préférence système
   useEffect(() => {
@@ -44,33 +47,38 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Accueil', href: '#home' },
+    { name: 'À propos', href: '#about' },
+    { name: 'Compétences', href: '#skills' },
+    { name: 'Projets', href: '#portfolio' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  const handleNav = (href) => {
+    const id = href.replace('#', '');
+    if (location.pathname !== '/') {
+      // Navigate to home with hash, App will handle scrolling on route change
+      navigate({ pathname: '/', hash: href });
+    } else {
+      scrollToSection(id);
+    }
+  };
 
   return (
     <nav className="fixed w-full bg-white/70 dark:bg-[#0b1220cc] backdrop-blur shadow-lg z-50 text-gray-900 dark:text-dark-text">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <span className="text-xl font-bold dark:text-white">Portfolio</span>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+        <div className="relative flex items-center h-16">
+          {/* Desktop Menu (centered) */}
+          <div className="hidden sm:flex sm:space-x-8 absolute left-1/2 -translate-x-1/2">
             {menuItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection(item.href.replace('#', ''));
+                  handleNav(item.href);
                 }}
-                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-500 dark:text-gray-300 transition-all duration-200 hover:text-transparent dark:hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-gray-900 hover:via-primary-600 hover:to-amber-400 dark:hover:from-white dark:hover:via-primary-400 dark:hover:to-yellow-300"
               >
                 {item.name}
               </a>
@@ -79,8 +87,8 @@ const Navbar = () => {
 
 
 
-          {/* Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
+          {/* Right Controls */}
+          <div className="ml-auto flex items-center space-x-4">
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
@@ -111,10 +119,10 @@ const Navbar = () => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection(item.href.replace('#', ''));
+                  handleNav(item.href);
                   setIsOpen(false);
                 }}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 dark:text-gray-400 transition-all duration-200 hover:text-transparent dark:hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-gray-900 hover:via-primary-600 hover:to-amber-400 dark:hover:from-white dark:hover:via-primary-400 dark:hover:to-yellow-300"
               >
                 {item.name}
               </a>

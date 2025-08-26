@@ -13,9 +13,9 @@ const Home = () => {
             {/* Col gauche: Texte */}
             <div className="text-center md:text-left">
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
-                <span className="block">Bonjour,</span>
-                <span className="block text-primary-600">Je suis Développeur Full Stack</span>
-              </h1>
+                <span className="block">Sidy Keita</span>
+                <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-amber-400 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-yellow-300">Développeur Full Stack</h2>
+                </h1>
 
               <p className="mt-4 text-base text-gray-500 dark:text-gray-300 sm:text-lg md:text-xl max-w-xl md:max-w-none mx-auto md:mx-0">
                 Passionné par la création de sites web modernes et réactifs, je développe des applications web qui allient performance et expérience utilisateur.
@@ -25,9 +25,9 @@ const Home = () => {
                 <div className="rounded-md shadow">
                   <Link
                     to="#contact"
-                    className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10"
+                    className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white btn-gradient-violet md:py-4 md:text-lg md:px-10"
                   >
-                    Say Hello
+                    Me contacter 👋
                   </Link>
                 </div>
               </div>

@@ -78,11 +78,11 @@ const Skills = () => {
   const frontendGroups = [
     {
       title: 'Langages',
-      items: ['HTML', 'CSS', 'JavaScript', 'TypeScript'],
+      items: ['HTML', 'CSS', 'JavaScript', 'TailwindCSS'],
     },
     {
       title: 'Frameworks & outils',
-      items: ['React', 'Angular', 'Bootstrap', 'Vite'],
+      items: ['React','Bootstrap', 'Vite'],
     },
     {
       title: 'Compétences associées',
@@ -93,7 +93,7 @@ const Skills = () => {
   const backendGroups = [
     {
       title: 'Langages',
-      items: ['JavaScript', 'PHP', 'SQL'],
+      items: [  'PHP', 'SQL'],
     },
     {
       title: 'Frameworks & environnements',
@@ -117,8 +117,7 @@ const Skills = () => {
     <section id="skills" className="py-20 bg-gray-50 dark:bg-dark-bg">
       <Reveal as="div" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-primary-600">Skills</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">My technical level</p>
+        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-gray-900 via-primary-600 to-primary-600 bg-clip-text text-transparent dark:from-white dark:via-primary-400 dark:to-primary-400">Compétences</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
