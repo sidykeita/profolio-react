@@ -54,29 +54,38 @@ const Contact = () => {
     setError('');
     setIsSubmitting(true);
     try {
+      // Utiliser FormData (évite les soucis d'en-têtes CORS/JSON)
+      const body = new FormData();
+      body.append('name', formData.name);
+      body.append('email', formData.email);
+      body.append('message', formData.message);
+      body.append('_subject', 'Nouveau message depuis le portfolio');
+      body.append('_template', 'table');
+      body.append('_captcha', 'false');
+
       const res = await fetch('https://formsubmit.co/ajax/sidyk68@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          Nom: formData.name,
-          Email: formData.email,
-          Message: formData.message,
-          _subject: 'Nouveau message depuis le portfolio',
-          _template: 'table',
-          _captcha: 'false',
-          _honey: ''
-        })
+        headers: { Accept: 'application/json' },
+        body
       });
-      if (!res.ok) throw new Error('Erreur lors de l\'envoi');
+      if (!res.ok) {
+        // Essayer de lire la réponse pour un message plus précis
+        let msg = 'Erreur lors de l\'envoi';
+        try {
+          const errJson = await res.json();
+          if (errJson?.message) msg = errJson.message;
+        } catch (_) {}
+        throw new Error(msg);
+      }
       const data = await res.json();
-      if (data?.success === 'true') {
+      if (data?.success === 'true' || data?.success === true) {
         setSent(true);
         setFormData({ name: '', email: '', message: '' });
       } else {
-        throw new Error('Envoi non confirmé');
+        throw new Error(data?.message || 'Envoi non confirmé');
       }
     } catch (err) {
-      setError("L'envoi a échoué. Veuillez réessayer ou m'écrire à sidyk68@gmail.com.");
+      setError((err && err.message) ? err.message : "L'envoi a échoué. Veuillez réessayer ou m'écrire à sidyk68@gmail.com.");
     } finally {
       setIsSubmitting(false);
     }
