@@ -8,7 +8,7 @@ const logoF2i = new URL("../images/logo/f2i_logo.jpeg", import.meta.url).href;
 const logoCompany = new URL("../images/logo/images.png", import.meta.url).href;
 const logoSailingLoc = new URL("../images/logo/logo-SailingLOC-couleur.png", import.meta.url).href;
 // CV de l'utilisateur
-const cvUrl = new URL("../images/cv/CV__SIDY_KEITA-v1.pdf", import.meta.url).href;
+const cvUrl = new URL("../images/cv/CV_2025-08-26_SIDY_KEITA.pdf", import.meta.url).href;
 
 const About = () => {
   return (
@@ -41,7 +41,7 @@ const About = () => {
                 <div className="grid grid-cols-3 gap-3">
                   {[
                     { iconImg: logoCompany, title: 'Expérience', sub: '4 ans ' },
-                    { iconImg: logoF2i, title: 'Diplôme', sub: 'Master 1'  },
+                    { iconImg: logoF2i, title: 'Diplôme', sub: 'Master 2'  },
                     { iconImg: logoSailingLoc, title: 'Projets', sub: '+ 10' },
                   ].map((c, idx) => (
                     <div
